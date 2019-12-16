@@ -25,10 +25,12 @@ app.post(
         mysqlConnection.query( bodyjson.query, function (err, rows, fields) {
             if (!err) {
                 res.json(rows);
+                console.log(rows);
             }
             else{
-                console.log('Error performing Query.');
-                var error = "{ 'error': 'Error performing Query' }";
+                console.log(err.message);
+                console.log('Error performing Query: ' +err.message );
+                var error = "{ 'error': 'Error performing Query err: " +err.message + "' }";
                 res.json(error);
             }
         });
